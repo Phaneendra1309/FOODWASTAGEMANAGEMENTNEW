@@ -15,7 +15,7 @@ if (!isset($_GET['id']) || empty($_GET['id'])) {
 $donation_id = $_GET['id'];
 
 // Fetch donation data
-$stmt = $conn->prepare("SELECT food_item, quantity, pickup_location, expiry_date, status FROM donations WHERE id = ?");
+$stmt = $conn->prepare("SELECT food_item, quantity, pickup_location, expiry_date, request_status FROM donations WHERE id = ?");
 $stmt->bind_param("i", $donation_id);
 $stmt->execute();
 $result = $stmt->get_result();

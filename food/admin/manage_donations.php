@@ -8,7 +8,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
 include '../database/db_connect.php';
 
 // Fetch donations from database
-$sql = "SELECT donations.id, users.username, donations.food_item, donations.quantity, donations.pickup_location, donations.expiry_date, donations.status FROM donations JOIN users ON donations.user_id = users.id";
+$sql = "SELECT donations.id, users.username, donations.food_item, donations.quantity, donations.pickup_location, donations.expiry_date,food_desc, request_status FROM donations JOIN users ON donations.user_id = users.id";
 $result = $conn->query($sql);
 ?>
 

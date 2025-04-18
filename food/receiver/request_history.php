@@ -12,7 +12,7 @@ include '../database/db_connect.php';
 $user_id = $_SESSION['user_id'];
 
 // Query to get the donations for the receiver (using the requests table to link donations to receiver)
-$sql = "SELECT donations.id, donations.food_item, donations.quantity, donations.pickup_location, donations.expiry_date,  requests.request_status AS request_status, requests.created_at 
+$sql = "SELECT donations.id, donations.food_item, donations.food_desc, donations.quantity, donations.pickup_location, donations.expiry_date,  requests.request_status AS request_status, requests.created_at 
         FROM donations
         JOIN requests ON donations.id = requests.donation_id
         WHERE requests.receiver_id = ?";
@@ -54,6 +54,7 @@ $result = $stmt->get_result();
                                     <tr>
                                         <th>ID</th>
                                         <th>Food Item</th>
+                                        <th>Food Description</th>
                                         <th>Quantity</th>
                                         <th>Pickup Location</th>
                                         <th>Expiry Date</th>
@@ -66,6 +67,7 @@ $result = $stmt->get_result();
                                         <tr>
                                             <td><?php echo $row['id']; ?></td>
                                             <td><?php echo htmlspecialchars($row['food_item']); ?></td>
+                                            <td><?php echo htmlspecialchars($row['food_desc']); ?></td>
                                             <td><?php echo htmlspecialchars($row['quantity']); ?></td>
                                             <td>
                                             <a href="#" onclick="showMap('<?= addslashes($row['pickup_location']) ?>'); return false;">

@@ -8,7 +8,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'donor') {
 include '../database/db_connect.php';
 
 $user_id = $_SESSION['user_id'];
-$sql = "SELECT id, food_item, quantity, pickup_location, expiry_date, request_status FROM donations WHERE user_id = ?";
+$sql = "SELECT id, food_item,food_desc, quantity, pickup_location, expiry_date, request_status FROM donations WHERE user_id = ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
@@ -45,6 +45,7 @@ $stmt->close();
                                     <tr>
                                         <th>ID</th>
                                         <th>Food Item</th>
+                                        <th>Food Description</th>
                                         <th>Quantity</th>
                                         <th>Pickup Location</th>
                                         <th>Expiry Date</th>
@@ -56,6 +57,7 @@ $stmt->close();
                                         <tr>
                                             <td><?php echo $row['id']; ?></td>
                                             <td><?php echo htmlspecialchars($row['food_item']); ?></td>
+                                            <td><?php echo htmlspecialchars($row['food_desc']); ?></td>
                                             <td><?php echo htmlspecialchars($row['quantity']); ?></td>
                                             <td><?php echo htmlspecialchars($row['pickup_location']); ?></td>
                                             <td><?php echo htmlspecialchars($row['expiry_date']); ?></td>

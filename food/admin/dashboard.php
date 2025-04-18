@@ -69,7 +69,7 @@ while ($row = $donationData->fetch_assoc()) {
                                     Donations by Food Type
                                 </div>
                                 <div class="card-body">
-                                    <canvas id="donationChart" width="100%" height="40"></canvas>
+                                    <canvas id="donationChart" width="100%" height="20"></canvas>
                                 </div>
                             </div>
                         </div>
